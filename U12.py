@@ -22,9 +22,15 @@ def linAnpassung(x,y,sy):
     
     return ((b1*C[1][1] - b2*C[0][1]) / np.linalg.det(C),
     (b1*C[0][0] - b2*C[0][1]) / np.linalg.det(C),
+    np.min(C), #Wohl noch falsch
     np.linalg.inv(C))
     
 messpunkte = np.loadtxt(DATEI)
+
+
+plt.plot(messpunkte[:,0],messpunkte[:,1], label="Zerfälle")
+plt.show()
+
     
     
     
