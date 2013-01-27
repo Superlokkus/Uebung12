@@ -16,7 +16,7 @@ def linAnpassung(x,y,sy):
     
     Gibt den y0, m, min x2 sowie die Kovarianzmatrix zurück.
     """
-    C = np.array([[np.sum(sy),np.sum(sy*x)][np.sum(sy*x),np.sum(sy*x**2)]])
+    C = np.array([[np.sum(sy),np.sum(sy*x)],[np.sum(sy*x),np.sum(sy*x**2)]])
     b1 = np.sum(sy*y)
     b2 = np.sum(sy*x*y)
     
