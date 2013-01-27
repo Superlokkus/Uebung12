@@ -20,8 +20,8 @@ def linAnpassung(x,y,sy):
     b1 = np.sum(sy*y)
     b2 = np.sum(sy*x*y)
     
-    return (b1*C[1][1] - b2*C[0][1]) / np.linalg.det(C))
-    (b1*C[0][0] - b2*C[0][1]) / np.linalg.det(C))
+    return ((b1*C[1][1] - b2*C[0][1]) / np.linalg.det(C),
+    (b1*C[0][0] - b2*C[0][1]) / np.linalg.det(C),
     np.linalg.inv(C))
     
 messpunkte = np.loadtxt(DATEI)
