@@ -8,6 +8,7 @@ from __future__ import division
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import pyplot as plt
+import math
 
 DATEI = "Pa234.dat" 
 
@@ -26,9 +27,11 @@ def linAnpassung(x,y,sy):
     np.linalg.inv(C))
     
 messpunkte = np.loadtxt(DATEI)
+smp = np.array(np.sqrt(messpunkte[:,1])) #Std der Messwerte bei PV
 
+print linAnpassung(messpunkte[:,0],messpunkte[:,1],smp)
 
-plt.plot(messpunkte[:,0],messpunkte[:,1], label="Zerfälle")
+plt.plot(messpunkte[:,0],np.log(messpunkte[:,1]), label="Zerfälle")
 plt.show()
 
     
