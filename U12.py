@@ -8,7 +8,7 @@ from __future__ import division
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import pyplot as plt
-import math
+
 
 DATEI = "Pa234.dat" 
 
@@ -29,9 +29,16 @@ def linAnpassung(x,y,sy):
 messpunkte = np.loadtxt(DATEI)
 smp = np.array(np.sqrt(messpunkte[:,1])) #Std der Messwerte bei PV
 
-print linAnpassung(messpunkte[:,0],messpunkte[:,1],smp)
+y0,m,mx2,kvm = linAnpassung(messpunkte[:,0],np.log(messpunkte[:,1]),smp)#log für Linearisierung
+print linAnpassung(messpunkte[:,0],np.log(messpunkte[:,1]),smp) #3.
+def modellf(x,y0,m):
+    """Einfach eine Modell-Funktion"""
+    return y0 + np.exp(-x/m)
 
-plt.plot(messpunkte[:,0],np.log(messpunkte[:,1]), label="Zerfälle")
+plt.xlabel("Zeit in s")
+plt.ylabel("Zerfaelle")
+plt.plot(messpunkte[:,0],modellf(messpunkte[:,0],y0,m), label="Fit")
+plt.plot(messpunkte[:,0],messpunkte[:,1], label="Zerfälle")
 plt.show()
 
     
