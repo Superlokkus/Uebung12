@@ -38,7 +38,7 @@ def residuen(p, x, y, ye):
     """ Berechnt (gewichtete) Differenz zwischen Daten und Modell. """
     return (y-modell(p,x))/ye
     
-X, Y, E = np.loadtxt('DatenErr.dat', unpack=True) # Daten (x ,y , Dy) 
+X, Y= np.loadtxt(DATEI, unpack=True) # Daten (x ,y , Dy) 
 p0 = np.array([1.0, 1.0]) # Startwerte für Anpassung einer Geraden 
 erg = opt.leastsq(residuen, p0, args=(X, Y, E), full_output=1) # Fit 
 p_opt = erg[0] # Optimierte Parameter der Geradengleichung
@@ -46,7 +46,8 @@ kov = erg[1] # deren Kovarianzmatrix
 sig_y0 = np.sqrt(kov[0][0]) # Standardabweichung des Achsenabschnitts 
 sig_m = np.sqrt(kov[1][1]) # Standardabweichung des Anstiegs 
 print("Kovarianzmatrix: \n{}".format(kov))
-print("Anstieg: {} +- {}".format(p_opt[1], sig_m)) print("Achsenabschnitt: {} +- {}".format(p_opt[0], sig_y0))
+print("Anstieg: {} +- {}".format(p_opt[1], sig_m)) 
+print("Achsenabschnitt: {} +- {}".format(p_opt[0], sig_y0))
 
 plt.plot(messpunkte[:,0],messpunkte[:,1], label="Zerfälle")
 plt.show()
